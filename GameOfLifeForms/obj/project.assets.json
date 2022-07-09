@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Simon\\source\\repos\\GameOfLifeForms\\GameOfLifeForms\\GameOfLifeForms.csproj",
+      "projectUniqueName": "C:\\Users\\Simon\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLifeForms\\GameOfLifeForms.csproj",
       "projectName": "GameOfLifeForms",
-      "projectPath": "C:\\Users\\Simon\\source\\repos\\GameOfLifeForms\\GameOfLifeForms\\GameOfLifeForms.csproj",
+      "projectPath": "C:\\Users\\Simon\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLifeForms\\GameOfLifeForms.csproj",
       "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Simon\\source\\repos\\GameOfLifeForms\\GameOfLifeForms\\obj\\",
+      "outputPath": "C:\\Users\\Simon\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLifeForms\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
