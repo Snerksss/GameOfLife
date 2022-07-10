@@ -8,24 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Simon\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\simon\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Simon\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLifeForms\\GameOfLifeForms.csproj",
+      "projectUniqueName": "C:\\Users\\simon\\source\\repos\\GameOfLife\\GameOfLifeForms\\GameOfLifeForms.csproj",
       "projectName": "GameOfLifeForms",
-      "projectPath": "C:\\Users\\Simon\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLifeForms\\GameOfLifeForms.csproj",
-      "packagesPath": "C:\\Users\\Simon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Simon\\source\\repos\\GameOfLife\\GameOfLife\\GameOfLifeForms\\obj\\",
+      "projectPath": "C:\\Users\\simon\\source\\repos\\GameOfLife\\GameOfLifeForms\\GameOfLifeForms.csproj",
+      "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\simon\\source\\repos\\GameOfLife\\GameOfLifeForms\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

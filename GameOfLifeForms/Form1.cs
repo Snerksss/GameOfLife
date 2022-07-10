@@ -1,13 +1,14 @@
 namespace GameOfLifeForms {
     public partial class GameField : Form {
-        List<Pixel> pixelList;
+        Pixel[,] pixelList;
         List<CordPixel> alivePixel;
         int pixelSize;
+        Boolean firstRun;
         Boolean run;
         public GameField() {
             InitializeComponent();
+            firstRun = false;
             run = false;
-            pixelList = new List<Pixel>();
             alivePixel = new List<CordPixel>();
         }
 
@@ -49,7 +50,7 @@ namespace GameOfLifeForms {
         }
 
         private void generateRoundPixel(int x, int y, int pixelCount) {
-            Pixel pixel = pixelList[x * pixelCount + y];
+            Pixel pixel = pixelList[x, y];
 
             List<CordPixel> roundPixel = new List<CordPixel>();
 
@@ -78,7 +79,7 @@ namespace GameOfLifeForms {
                 }
             }
             pixel.RoundPixel = roundPixel;
-            pixelList[x * pixelCount + y] = pixel;
+            pixelList[x, y] = pixel;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) {
@@ -89,18 +90,22 @@ namespace GameOfLifeForms {
 
             int pixelCount = Decimal.ToInt32(numberOfPixels.Value);
 
-            for (int i = 0; i < pixelCount; i++) {
-                for (int j = 0; j < pixelCount; j++) {
-                    pixelList.Add(new Pixel(i, j));
-                }
-            }
+            if (!firstRun) {
+                pixelList = new Pixel[pixelCount, pixelCount];
 
-            for (int i = 0; i < pixelCount; i++) {
-                for (int j = 0; j < pixelCount; j++) {
-                    generateRoundPixel(i, j, pixelCount);
+                for (int i = 0; i < pixelCount; i++) {
+                    for (int j = 0; j < pixelCount; j++) {
+                        pixelList[i,j] = new Pixel(i, j);
+                    }
                 }
-            }
 
+                for (int i = 0; i < pixelCount; i++) {
+                    for (int j = 0; j < pixelCount; j++) {
+                        generateRoundPixel(i, j, pixelCount);
+                    }
+                }
+                firstRun = true;
+            }
             label1.Visible = numberOfPixels.Visible = false;
 
             button3.BackColor = Color.Gray;
@@ -109,12 +114,64 @@ namespace GameOfLifeForms {
 
             run = true;
 
+            this.pixelList[5,1].IsAlive = true;
+            alivePixel.Add(new CordPixel(5,1));
 
+            this.pixelList[6, 2].IsAlive = true;
+            alivePixel.Add(new CordPixel(6,2));
 
-            pixelList[5 * pixelCount + 1].IsAlive = true;
-            alivePixel.Add(new CordPixel(pixelList[5 * pixelCount + 1].X, pixelList[5 * pixelCount + 1].Y));
+            this.pixelList[7, 3].IsAlive = true;
+            alivePixel.Add(new CordPixel(7,3));
 
-            frameGenerator();
+            this.pixelList[6, 3].IsAlive = true;
+            alivePixel.Add(new CordPixel(6,3));
+
+            this.pixelList[6, 0].IsAlive = true;
+            alivePixel.Add(new CordPixel(6,0));
+
+            this.pixelList[8, 2].IsAlive = true;
+            alivePixel.Add(new CordPixel(8,2));
+
+            while (run) {
+            //for(int l = 0;l < 3; l++) { 
+               
+
+                List<Pixel> pixelToCheck = new List<Pixel>();
+
+                foreach(CordPixel pixel in alivePixel) {
+                    Pixel pixelID = this.pixelList[pixel.x, pixel.y];
+                    pixelToCheck.Add(pixelID);
+                    foreach(CordPixel roundPixel in pixelID.RoundPixel) {
+                        Pixel roundPixelID = this.pixelList[roundPixel.x, roundPixel.y];
+                        if (!pixelToCheck.Contains(roundPixelID)) { 
+                            pixelToCheck.Add(roundPixelID);
+                        }
+                    }
+                }
+
+                Pixel[,] newUpdatedGameField = new Pixel[pixelCount, pixelCount];
+
+                for (int i = 0; i < pixelCount; i++) {
+                    for (int j = 0; j < pixelCount; j++) {
+                        newUpdatedGameField[i, j] = this.pixelList[i, j];
+                    }
+                }
+
+                this.alivePixel = new List<CordPixel>();
+
+                foreach (Pixel pixel in pixelToCheck) { 
+                    if (pixel.checkAlive(this.pixelList)) {
+                        this.alivePixel.Add(new CordPixel(pixel.X, pixel.Y));
+                    }
+                    newUpdatedGameField[pixel.X, pixel.Y] = pixel;
+                }
+
+                this.pixelList = newUpdatedGameField;
+                frameGenerator();
+            }
+
+            
+
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -126,10 +183,10 @@ namespace GameOfLifeForms {
         private void button3_Click(object sender, EventArgs e) {
             if (run == false) {
                 label1.Visible = numberOfPixels.Visible = true;
+                firstRun = false;
+                pixelList = new Pixel[Decimal.ToInt32(numberOfPixels.Value), Decimal.ToInt32(numberOfPixels.Value)];
+                alivePixel = new List<CordPixel>();
             }
-
-            pixelList = new List<Pixel>();
-            alivePixel = new List<CordPixel>();
         }
 
         private void frameGenerator() {
@@ -145,6 +202,7 @@ namespace GameOfLifeForms {
                         this.pixelSize));
                 }
                 pictureBox1.Image = (Bitmap)bmp.Clone();
+                pictureBox1.Update();
             }
         }
     }
@@ -154,7 +212,6 @@ namespace GameOfLifeForms {
         private int y;
 
         private Boolean isAlive;
-
 
         private List<CordPixel> roundPixel;
 
