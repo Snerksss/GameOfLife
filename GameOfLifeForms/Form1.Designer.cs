@@ -1,7 +1,5 @@
-﻿namespace GameOfLifeForms
-{
-    partial class GameField
-    {
+﻿namespace GameOfLifeForms {
+    partial class GameField {
         /// <summary>
         ///  Required designer variable.
         /// </summary>
@@ -11,10 +9,8 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -26,8 +22,7 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.numberOfPixels = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,11 +48,21 @@
             this.numberOfPixels.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numberOfPixels.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.numberOfPixels.Location = new System.Drawing.Point(73, 841);
+            this.numberOfPixels.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numberOfPixels.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.numberOfPixels.Name = "numberOfPixels";
             this.numberOfPixels.Size = new System.Drawing.Size(120, 23);
             this.numberOfPixels.TabIndex = 1;
             this.numberOfPixels.Value = new decimal(new int[] {
-            50,
+            115,
             0,
             0,
             0});
