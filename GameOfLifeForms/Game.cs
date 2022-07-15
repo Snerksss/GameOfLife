@@ -35,14 +35,20 @@ namespace GameOfLifeForms {
                 }
             }
 
-            pixelList[0, 0].IsAlive = true;
-            alivePixel.Add(new CordPixel(pixelList[0, 0].X, pixelList[0, 0].Y));
+            pixelList[5, 10].IsAlive = true;
+            alivePixel.Add(new CordPixel(5, 10));
 
-            pixelList[1, 0].IsAlive = true;
-            alivePixel.Add(new CordPixel(pixelList[1, 0].X, pixelList[1, 0].Y));
+            pixelList[6, 11].IsAlive = true;
+            alivePixel.Add(new CordPixel(6, 11));
 
-            pixelList[2, 0].IsAlive = true;
-            alivePixel.Add(new CordPixel(pixelList[2, 0].X, pixelList[2, 0].Y));
+            pixelList[7, 11].IsAlive = true;
+            alivePixel.Add(new CordPixel(7, 11));
+
+            pixelList[7, 10].IsAlive = true;
+            alivePixel.Add(new CordPixel(7, 10));
+
+            pixelList[7, 9].IsAlive = true;
+            alivePixel.Add(new CordPixel(7, 9));
         }
 
         public Pixel generatePixel(int x, int y) {

@@ -24,7 +24,7 @@ namespace GameOfLifeForms {
             // Initialize & Start GameLoop
             gameLoop = new GameLoop();
             gameLoop.Load(myGame);
-            gameLoop.Start(this.Size.Width, this.Size.Height, 20);
+            gameLoop.Start(this.Size.Width, this.Size.Height, 80);
 
             // Start Graphics Timer
             graphicsTimer.Start();

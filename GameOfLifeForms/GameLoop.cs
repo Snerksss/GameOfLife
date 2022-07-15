@@ -17,14 +17,14 @@ namespace GameOfLifeForms {
             if (_myGame == null)
                 throw new ArgumentException("Game not loaded!");
 
-            _myGame.load(pixelCount, width, height, width/pixelCount);
+            _myGame.load(pixelCount, width, height, (height - 20)/pixelCount);
 
             
             Running = true;
 
             
             DateTime _previousGameTime = DateTime.Now;
-
+            
             while (Running) {
                 
                 _myGame.update();
