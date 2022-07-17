@@ -132,6 +132,10 @@
 
         }
 
+        public void reset() {
+            load(this.pixelCount, this.pixelSize);
+        }
+
     }
     public class Pixel {
         private int x;

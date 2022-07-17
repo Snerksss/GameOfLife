@@ -69,5 +69,10 @@ namespace GameOfLifeForms {
         private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
             gameLoop.setSpeed(Decimal.ToInt32(numericUpDown1.Value));
         }
+
+        private void button3_Click(object sender, EventArgs e) {
+            gameLoop.reset();
+            this.Invalidate();
+        }
     }
 }

@@ -1,13 +1,13 @@
 ﻿namespace GameOfLifeForms {
     internal class GameLoop {
-        private Game _myGame;
+        private Game gameObj;
         public bool Running { get; private set; }
 
         public int Speed { get; private set; }
 
         public void Load(Game gameObj, int width, int pixelCount, int speed) {
-            _myGame = gameObj;
-            _myGame.load(pixelCount, (width) / pixelCount);
+            this.gameObj = gameObj;
+            this.gameObj.load(pixelCount, (width) / pixelCount);
             Speed = speed;
         }
 
@@ -18,14 +18,14 @@
 
             while (Running) {
 
-                _myGame.update();
+                gameObj.update();
 
                 await Task.Delay(Speed);
             }
         }
 
         public void set(int x, int y) {
-            _myGame.set(x, y);
+            gameObj.set(x, y);
         }
 
         public void Stop() {
@@ -34,7 +34,11 @@
 
 
         public void Draw(Graphics gfx) {
-            _myGame.draw(gfx);
+            gameObj.draw(gfx);
+        }
+
+        public void reset() {
+            gameObj.reset();
         }
 
         public void setSpeed(int speed) {
