@@ -1,32 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameOfLifeForms {
+﻿namespace GameOfLifeForms {
     internal class Game {
 
         Pixel[,] pixelList;
         List<CordPixel> alivePixel;
         int pixelCount;
-        int width;
-        int height;
         int pixelSize;
 
         public Size Resolution { get; set; }
 
-        public int PixelCount { 
+        public int PixelCount {
             get { return pixelCount; }
-            set { pixelCount = value; } 
+            set { pixelCount = value; }
         }
 
-        internal void load(int pixelCount, int width, int height, int pixelSize) {
+        internal void load(int pixelCount, int pixelSize) {
             alivePixel = new List<CordPixel>();
             this.pixelCount = pixelCount;
             pixelList = new Pixel[pixelCount, pixelCount];
-            this.width = width;
-            this.height = height;
             this.pixelSize = pixelSize;
 
             for (int i = 0; i < pixelCount; i++) {
@@ -34,25 +24,25 @@ namespace GameOfLifeForms {
                     pixelList[i, j] = generatePixel(i, j);
                 }
             }
+        }
 
-            pixelList[5, 10].IsAlive = true;
-            alivePixel.Add(new CordPixel(5, 10));
+        public void set(int x, int y) {
+            if (pixelList[x, y].IsAlive == false) {
+                pixelList[x, y].IsAlive = true;
+                alivePixel.Add(new CordPixel(x, y));
+            } else {
+                pixelList[x, y].IsAlive = false;
+                for (int i = 0; i < alivePixel.Count; i++) {
+                    if (alivePixel[i].x == x && alivePixel[i].y == y) {
+                        alivePixel.RemoveAt(i);
+                    }
+                }
 
-            pixelList[6, 11].IsAlive = true;
-            alivePixel.Add(new CordPixel(6, 11));
-
-            pixelList[7, 11].IsAlive = true;
-            alivePixel.Add(new CordPixel(7, 11));
-
-            pixelList[7, 10].IsAlive = true;
-            alivePixel.Add(new CordPixel(7, 10));
-
-            pixelList[7, 9].IsAlive = true;
-            alivePixel.Add(new CordPixel(7, 9));
+            }
         }
 
         public Pixel generatePixel(int x, int y) {
-            
+
             Pixel pixel = new Pixel(x, y);
 
             List<CordPixel> roundPixel = new List<CordPixel>();
@@ -127,24 +117,19 @@ namespace GameOfLifeForms {
 
 
         public void draw(Graphics gfx) {
-                gfx.FillRectangle(new SolidBrush(Color.Black), new Rectangle(0, 0, width, height));
-                foreach (CordPixel pixel in alivePixel) {
-                    gfx.FillRectangle(new SolidBrush(Color.White), new Rectangle(
-                        this.pixelSize * pixel.x,
-                        this.pixelSize * pixel.y,
-                        this.pixelSize,
-                        this.pixelSize));
-                }
+            gfx.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, 0, pixelSize * pixelCount, pixelSize * pixelCount));
+            foreach (CordPixel pixel in alivePixel) {
+                gfx.FillRectangle(new SolidBrush(Color.Black), new Rectangle(
+                    this.pixelSize * pixel.x,
+                    this.pixelSize * pixel.y,
+                    this.pixelSize,
+                    this.pixelSize));
+            }
 
         }
 
         public void unload() {
-            this.width = 0;
-            this.height = 0;
-            this.pixelList = null;
-            this.alivePixel = null;
-            this.pixelSize = 0;
-            this.pixelCount = 0;
+
         }
 
     }

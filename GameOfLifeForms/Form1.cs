@@ -3,7 +3,7 @@ namespace GameOfLifeForms {
 
         System.Windows.Forms.Timer graphicsTimer;
         GameLoop gameLoop = null;
-        
+
 
         public GameField() {
             InitializeComponent();
@@ -16,18 +16,15 @@ namespace GameOfLifeForms {
 
         private void GameField_Load(object sender, EventArgs e) {
             Rectangle resolution = Screen.PrimaryScreen.Bounds;
-
+            this.Location = new Point(50, 50);
             // Initialize Game
             Game myGame = new Game();
             myGame.Resolution = new Size(resolution.Width, resolution.Height);
 
             // Initialize & Start GameLoop
             gameLoop = new GameLoop();
-            gameLoop.Load(myGame);
-            gameLoop.Start(this.Size.Width, this.Size.Height, 80);
+            gameLoop.Load(myGame, this.Size.Width, 100, Decimal.ToInt32(numericUpDown1.Value));
 
-            // Start Graphics Timer
-            graphicsTimer.Start();
         }
 
         private void GameField_Paint(object sender, PaintEventArgs e) {
@@ -48,6 +45,29 @@ namespace GameOfLifeForms {
 
         private void resizeField() {
 
-        }       
-    }  
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            gameLoop.Start();
+
+            // Start Graphics Timer
+            graphicsTimer.Start();
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            gameLoop.Stop();
+        }
+
+        private void GameField_Click(object sender, EventArgs e) {
+            var relativePoint = this.PointToClient(Cursor.Position);
+            double x = ((double)relativePoint.X / this.Size.Width) * 100;
+            double y = ((double)relativePoint.Y / this.Size.Width) * 100;
+            gameLoop.set((int)x, (int)y);
+            this.Invalidate();
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
+            gameLoop.setSpeed(Decimal.ToInt32(numericUpDown1.Value));
+        }
+    }
 }
