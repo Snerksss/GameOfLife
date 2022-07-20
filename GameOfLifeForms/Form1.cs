@@ -16,7 +16,7 @@ namespace GameOfLifeForms {
 
         private void GameField_Load(object sender, EventArgs e) {
             Rectangle resolution = Screen.PrimaryScreen.Bounds;
-            this.Location = new Point(50, 50);
+            this.Location = new Point(10, 10);
             // Initialize Game
             Game myGame = new Game();
             myGame.Resolution = new Size(resolution.Width, resolution.Height);
@@ -60,8 +60,8 @@ namespace GameOfLifeForms {
 
         private void GameField_Click(object sender, EventArgs e) {
             var relativePoint = this.PointToClient(Cursor.Position);
-            double x = ((double)relativePoint.X / this.Size.Width) * 100;
-            double y = ((double)relativePoint.Y / this.Size.Width) * 100;
+            double x = ((double)relativePoint.X / (this.Size.Width-10)) * 100;
+            double y = ((double)relativePoint.Y / (this.Size.Width-10)) * 100;
             gameLoop.set((int)x, (int)y);
             this.Invalidate();
         }
